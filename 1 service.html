@@ -35,6 +35,12 @@
             }
         }).controller('SearchController', function (GitHubService, $scope) {
             $scope.query = '';
+
+            if (GitHubService.data !== 'undefined') {
+                $scope.data = GitHubService.data;
+                $scope.query = GitHubService.lastQueryTerm;
+            }
+
             $scope.makeCall = function(event) {
                 if (event.keyCode === 13) {
                     GitHubService.makeCall($scope.query, function (data) {
